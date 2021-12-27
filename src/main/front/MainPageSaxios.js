@@ -1,6 +1,8 @@
 const pastact = document.getElementById("pastact1");
 const upact = document.getElementById("upact1");
 const studentID = localStorage.getItem("studentId");
+console.log(studentID);
+
 const getData = () => {
     console.log("getData");
     console.log(studentID);

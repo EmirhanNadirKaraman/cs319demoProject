@@ -12,12 +12,16 @@ const activityID = localStorage.getItem("activityId");
 function putActivityData() {
     let date = new Date($('#date').val());
     console.log(date.toDateString());
-    axios.put('https://projectdeneme.herokuapp.com/activities/customizeActivity/' + activityID, {
+
+    /*
+    axios.put('https://projectdeneme.herokuapp.com/activities/customizeActivity/' + activityID + "/", {
+
         headers: {
             'Access-Control-Allow-Origin': 'http://localhost:63342'
             // 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             // 'Access-Control-Allow-Headers': 'append,delete,entries,foreach,get,has,keys,set,values,Authorization'
         },
+
         activityName: activityNameText.value,
         activityDescription: descriptionText.value,
         guests: guestText.value,
@@ -34,18 +38,48 @@ function putActivityData() {
             console.log(error);
         })
 
+     */
 
-    /*
-    axios.put('https://projectdeneme.herokuapp.com/activities/addNewActivity', {
-        activityName: actName,
-        date: date,
-        capacity: quotaText.value,
-        ge250Point: ge250Text.value,
-        place: placeText.value,
-        participantList: null,
-        activityDescription: null
 
-    })
+
+    // 1. activityId'den activity name bul
+    // 2. add new activity içine dewamke
+
+    axios.get("https://projectdeneme.herokuapp.com/activities/getActivity/" + activityID)
+        .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+            axios.put('https://projectdeneme.herokuapp.com/activities/addNewActivity', {
+                activityName: response.data.activityName,
+                /*
+                date: date,
+                capacity: quotaText.value,
+                ge250Point: ge250Text.value,
+                place: placeText.value,
+                participantList: null,
+                activityDescription: null
+                */
+
+                activityDescription: descriptionText.value,
+                guests: guestText.value,
+                place: placeText.value,
+                capacity: quotaText.value,
+                date: datepicker,
+                ge250Point: ge250Text.value
+            })
+                .then(function () {
+                    console.log("i added");
+                    // document.location.href = "ClubManagerMainPage.html";
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
+        /*
         .then(function () {
             console.log("i created an activity, or did i?");
         })

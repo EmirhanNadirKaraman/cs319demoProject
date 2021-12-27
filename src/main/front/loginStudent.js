@@ -22,12 +22,12 @@ function getLoginResultStudent() {
     console.log("get login result student");
     axios.get('https://projectdeneme.herokuapp.com/students/loginPasswordCheck/' + userEmail.value + '/' + password.value)
         .then(function (response) {
-            console.log("axios get login password check");
+            alert("axios get login password check");
             if (response.data === true) {
                 console.log("response data is true");
                 getID(userEmail.value);
                 console.log("h" + localStorage["studentID"]);
-                document.location.href = "MainPageS.html";
+                // document.location.href = "MainPageS.html";
             } else {
                 alert("E-mail or password is wrong!")
             }
@@ -61,3 +61,4 @@ function getID(studentEmail) {
 }
 
 login.addEventListener('click', getLoginResultStudent);
+document.location.href = "MainPageS.html";
