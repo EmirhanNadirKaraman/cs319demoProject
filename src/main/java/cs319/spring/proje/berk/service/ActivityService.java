@@ -99,7 +99,10 @@ public class ActivityService {
      */
 
     public Long getActivityIdByName(String activityName) {
-        return activityRepository.findActivityByActivityName(activityName).getId();
+        Activity activity = activityRepository.findActivityByActivityName(activityName);
+        if(activity != null)
+            return activity.getId();
+        throw new IllegalStateException("activity with that name does not exist");
     }
 
     // TODO: Check if this method works properly

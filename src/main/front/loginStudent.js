@@ -1,67 +1,63 @@
-let tab = document.querySelector(".tab-form");
-let tabHeader = tab.querySelector(".tab-header");
-let tabHeaderElements = tab.querySelectorAll(".tab-header > div");
-let tabBody = tab.querySelector(".tab-body");
-let tabBodyElements = tab.querySelectorAll(".tab-body > div");
+let tabStudent = document.querySelector(".tab-form");
+let tabHeaderStudent = tabStudent.querySelector(".tab-header");
+let tabHeaderElementsStudent = tabStudent.querySelectorAll(".tab-header > div");
+let tabBodyStudent = tabStudent.querySelector(".tab-body");
+let tabBodyElementsStudent = tabStudent.querySelectorAll(".tab-body > div");
 
-for(let i=0;i<tabHeaderElements.length;i++){
-  tabHeaderElements[i].addEventListener("click",function(){
-    tabHeader.querySelector(".active").classList.remove("active");
-    tabHeaderElements[i].classList.add("active");
-    tabBody.querySelector(".active").classList.remove("active");
-    tabBodyElements[i].classList.add("active");
-  });
+for (let i = 0; i < tabHeaderElementsStudent.length; i++) {
+    tabHeaderElementsStudent[i].addEventListener("click", function () {
+        tabHeaderStudent.querySelector(".active").classList.remove("active");
+        tabHeaderElementsStudent[i].classList.add("active");
+        tabBodyStudent.querySelector(".active").classList.remove("active");
+        tabBodyElementsStudent[i].classList.add("active");
+    });
 }
 
-var username = document.getElementById("userMail");
-var pass = document.getElementById("password");
-var login = document.getElementById("login");
-var currentID;
+let userEmail = document.getElementById("userMail");
+let password = document.getElementById("password");
+let login = document.getElementById("login");
+let currentID;
 
+function getLoginResultStudent() {
+    console.log("get login result student");
+    axios.get('https://projectdeneme.herokuapp.com/students/loginPasswordCheck/' + userEmail.value + '/' + password.value)
+        .then(function (response) {
+            console.log("axios get login password check");
+            if (response.data === true) {
+                console.log("response data is true");
+                getID(userEmail.value);
+                console.log("h" + localStorage["studentID"]);
+                document.location.href = "MainPageS.html";
+            } else {
+                alert("E-mail or password is wrong!")
+            }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
+    // alert("get login result student finished");
+}
 
-const getLoginResult2 = () => {
-  axios.get('https://projectdeneme.herokuapp.com/students/loginPasswordCheck/' + username.value + '/' + pass.value).then(function (response) {
-  console.log(response);
-  console.log(response.data);
-  if(response.data === true){
-    getID(username.value);
+function getID(studentEmail) {
+    console.log("in get id");
+    // GET http://localhost:8080/students/getStudentIdByEmail/{{studentEmail}}
+    console.log("student email is " + studentEmail);
+    console.log(typeof(studentEmail));
 
-   document.location.href = "MainPageS.html";
-  }
-  else{
-    alert("E-mail or password is wrong!")
-  }
-  })
-  .catch(function (error) {
-  // handle error
-  console.log(error);
-  });
-};
+    axios.get('https://projectdeneme.herokuapp.com/students/getStudentIdByEmail/' + studentEmail).then(function (response) {
+        console.log("get student id by email");
+        currentID = response.data;
+        console.log(currentID);
+        localStorage.setItem("studentID", currentID);
+        alert("local storage set student id to currentID = " + currentID);
+        alert(localStorage.getItem("studentID"));
+    })
+        .catch(function (error) {
+            // handle error
+            alert(error);
+            console.log(error);
+        });
+}
 
-
-function getID(usern){
-
-  axios.get('https://projectdeneme.herokuapp.com/students/getStudentIdByEmail/' + usern).then(function(response){
-    console.log(response.data);
-    currentID = response.data;
-    console.log(currentID);
-
-
-  console.log(currentID);
-  sessionStorage.setItem("studentID", currentID );
-
-  })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
-};
-
- 
-  //document.cookie = "name="+name.value+";path=/" + ";expires="+expire.toUTCString();
-  //document.cookie = "password="+encodeURI(pwd.value)+";path=/" + ";expires="+expire.toUTCString();
-  //can only write one entity at a time (name, pass)
-
-
-login.addEventListener('click', getLoginResult2);
-
+login.addEventListener('click', getLoginResultStudent);
