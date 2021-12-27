@@ -47,10 +47,11 @@ function putActivityData() {
                     axios.put("https://projectdeneme.herokuapp.com/clubs/addActivityToClub/" + activityID + "/" + clubID, {})
                         .then(function () {
                             console.log("added activity to club");
-                            axios.get("https://projectdeneme.herokuapp.com/activities/getActivity/26").then(function (response) {
-                                console.log("activity 26");
-                                console.log(response);
-                            })
+                            axios.get("https://projectdeneme.herokuapp.com/activities/getActivity/" + activityID)
+                                .then(function (response) {
+                                    console.log("new activity details")
+                                    console.log(response);
+                                })
                                 .catch(function (error) {
                                     console.log(error);
                                 })
@@ -58,11 +59,12 @@ function putActivityData() {
                         .catch(function (error) {
                             console.log(error);
                         });
+                    document.location.href = "ClubManagerMainPage.html";
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-            document.location.href = "ClubManagerMainPage.html";
+
         })
         .catch(function (error) {
             console.log(error);

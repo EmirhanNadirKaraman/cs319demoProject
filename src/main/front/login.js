@@ -34,7 +34,7 @@ function getLoginResult() {
             // handle error
             console.log(error);
         });
-};
+}
 
 
 function getID(managerEmail) {
@@ -56,7 +56,7 @@ function getID(managerEmail) {
             // handle error
             console.log(error);
         });
-};
+}
 
 
 //document.cookie = "name="+name.value+";path=/" + ";expires="+expire.toUTCString();
