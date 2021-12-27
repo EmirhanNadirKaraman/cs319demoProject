@@ -175,4 +175,20 @@ public class ActivityService {
         else
             throw new IllegalStateException("student does not exist in activity participants list");
     }
+
+    @Transactional
+    public void customizeActivity(Long activityId, Activity activity) {
+        Activity activityById = activityRepository.findById(activityId).orElse(null);
+        if(activityById == null)
+            throw new IllegalStateException("activity does not exist");
+
+        activityById.setActivityName(activity.getActivityName());
+        activityById.setDate(activity.getDate());
+        activityById.setCapacity(activity.getCapacity());
+        activityById.setGe250Point(activity.getGe250Point());
+        activityById.setActivityDescription(activity.getActivityDescription());
+        activityById.setParticipantList(activity.getParticipantList());
+        activityById.setPlace(activity.getPlace());
+        activityById.setGuests(activity.getGuests());
+    }
 }

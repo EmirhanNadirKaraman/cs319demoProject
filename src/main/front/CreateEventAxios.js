@@ -8,20 +8,6 @@ const ge250Text = document.getElementById('ge250Text');
 const saveButton = document.getElementById('saveButton');
 const clubID = localStorage.getItem("clubID");
 
-/**
- const getDataCreateActivity = () => {
-    console.log("salkjdsakjdsakj");
-    axios.get('https://projectdeneme.herokuapp.com/activities/addNewActivity').then(function (response) {
-        console.log(response);
-
-    }
-
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        });
-};
- */
 function putActivityData() {
     let date = new Date($('#date').val());
     console.log(date.toDateString());

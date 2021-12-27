@@ -1,4 +1,4 @@
-// const activityNameText = document.getElementById('activityNameText');
+const activityNameText = document.getElementById('activityNameText');
 const descriptionText = document.getElementById('descriptionText');
 const guestText = document.getElementById('guestText');
 const datepicker = document.getElementById('date');
@@ -7,11 +7,30 @@ const placeText = document.getElementById('placeText');
 const ge250Text = document.getElementById('ge250Text');
 const saveButton = document.getElementById('saveButton');
 const clubID = localStorage.getItem("clubId");
-const actName = localStorage.getItem("activityName");
+const activityID = localStorage.getItem("activityId");
 
 function putActivityData() {
     let date = new Date($('#date').val());
     console.log(date.toDateString());
+    axios.put("https://projectdeneme.herokuapp.com/activities/customizeActivity/" + activityID, {
+        activityName: activityNameText.value,
+        activityDescription: descriptionText.value,
+        guests: guestText.value,
+        place: placeText.value,
+        capacity: quotaText.value,
+        date: date,
+        ge250Point: ge250Text.value
+    })
+        .then(function () {
+            console.log("i customized the event");
+            document.location.href = "ActivityList.html";
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+
+
+    /*
     axios.put('https://projectdeneme.herokuapp.com/activities/addNewActivity', {
         activityName: actName,
         date: date,
@@ -28,7 +47,7 @@ function putActivityData() {
         .catch(function (error) {
             console.log(error);
         });
-
+    */
     // find activity id by name
     // add to clubID's activity list
 
