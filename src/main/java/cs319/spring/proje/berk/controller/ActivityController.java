@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:63342")
 @RestController
 @RequestMapping(path = "activities")
 public class ActivityController {

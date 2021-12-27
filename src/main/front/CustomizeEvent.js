@@ -12,7 +12,12 @@ const activityID = localStorage.getItem("activityId");
 function putActivityData() {
     let date = new Date($('#date').val());
     console.log(date.toDateString());
-    axios.put("https://projectdeneme.herokuapp.com/activities/customizeActivity/" + activityID, {
+    axios.put('https://projectdeneme.herokuapp.com/activities/customizeActivity/' + activityID, {
+        headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:63342'
+            // 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            // 'Access-Control-Allow-Headers': 'append,delete,entries,foreach,get,has,keys,set,values,Authorization'
+        },
         activityName: activityNameText.value,
         activityDescription: descriptionText.value,
         guests: guestText.value,
