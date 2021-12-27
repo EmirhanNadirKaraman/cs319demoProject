@@ -1,7 +1,7 @@
 //const axios = require('axios');
 //https://projectdeneme.herokuapp.com/activities/listActivities
 //const axios = require('axios').default;
-const clubID = localStorage.getItem("clubID");
+const clubID = localStorage.getItem("clubId");
 
 
 function getData2() {

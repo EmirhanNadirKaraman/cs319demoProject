@@ -16,8 +16,6 @@ for (let i = 0; i < tabHeaderElements.length; i++) {
 let managerEmail = document.getElementById("userMail");
 let password = document.getElementById("password");
 let login = document.getElementById("login");
-let currentID;
-
 
 function getLoginResult() {
     axios.get('https://projectdeneme.herokuapp.com/clubManagers/loginPasswordCheck/' + managerEmail.value + '/' + password.value).then(function (response) {
@@ -39,19 +37,24 @@ function getLoginResult() {
 
 function getID(managerEmail) {
 
-    axios.get('https://projectdeneme.herokuapp.com/clubManagers/getClubManagerIdByEmail/' + managerEmail).then(function (response) {
-        console.log(response.data);
-        currentID = response.data;
+    axios.get('https://projectdeneme.herokuapp.com/clubManagers/getClubManagerIdByEmail/' + managerEmail)
 
-        axios.get('https://projectdeneme.herokuapp.com/clubManagers/getClub/' + currentID).then(function (response) {
-            console.log(response);
-            let clubID = response.data.id;
-            console.log(typeof (clubID));
-            console.log(clubID);
-            localStorage.setItem("clubID", clubID);
+        .then(function (response) {
+            console.log(response.data);
+            let currentID = response.data;
 
+            axios.get('https://projectdeneme.herokuapp.com/clubManagers/getClub/' + currentID)
+                .then(function (response) {
+                    console.log(response);
+                    let clubID = response.data.id;
+                    console.log(typeof (clubID));
+                    console.log(clubID);
+                    localStorage.setItem("clubId", clubID);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         })
-    })
         .catch(function (error) {
             // handle error
             console.log(error);

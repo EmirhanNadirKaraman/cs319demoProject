@@ -1,6 +1,6 @@
 const tbody = document.getElementById("tbody");
 const tobbybest1 = document.getElementById("tobbybest");
-const clubID = localStorage.getItem("clubID");
+const clubID = localStorage.getItem("clubId");
 console.log("club id is " + clubID);
 
 function getData() {

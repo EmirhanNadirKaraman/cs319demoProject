@@ -1,6 +1,6 @@
 const tbody1 = document.getElementById("tbody");
 
-const id = sessionStorage.getItem("activityId");
+const id = localStorage.getItem("activityId");
 console.log(id);
 
 

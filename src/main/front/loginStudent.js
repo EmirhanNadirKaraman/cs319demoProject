@@ -49,9 +49,9 @@ function getID(studentEmail) {
         console.log("get student id by email");
         currentID = response.data;
         console.log(currentID);
-        localStorage.setItem("studentID", currentID);
+        localStorage.setItem("studentId", currentID);
         alert("local storage set student id to currentID = " + currentID);
-        alert(localStorage.getItem("studentID"));
+        alert(localStorage.getItem("studentId"));
     })
         .catch(function (error) {
             // handle error

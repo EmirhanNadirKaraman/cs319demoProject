@@ -102,4 +102,7 @@ public class ActivityController {
     }
 
      */
+
+    @PutMapping(path = "customizeActivity/{activityId}")
+    public 
 }
