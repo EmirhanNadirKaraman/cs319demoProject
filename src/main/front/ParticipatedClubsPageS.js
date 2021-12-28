@@ -8,9 +8,9 @@ const getData = () => {
         console.log(response);
 
 
-        for (var i = 0; i < response.data.length; i++) {
+        for (let i = 0; i < response.data.length; i++) {
 
-            var clubname = response.data[i].clubName;
+            let clubname = response.data[i].clubName;
 
             document.body.innerHTML += ' <ul className="list-group list-group-horizontal  justify-content-evenly " style="background-color: #cbcaca">\n' +
                 '        <li className="list-group-item col-lg-4 col-sm-4 col-md-4 text-center ms-2"\n' +
