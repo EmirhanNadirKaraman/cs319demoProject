@@ -73,7 +73,7 @@ public class StudentController {
     }
      */
 
-    @PutMapping(path = "changeFavoriteStatus/{studentId}/{clubId}")
+    @GetMapping(path = "changeFavoriteStatus/{studentId}/{clubId}")
     public void changeFavoriteStatus(@PathVariable("studentId") Long studentId,
                                      @PathVariable("clubId") Long clubId) {
         studentService.changeFavoriteStatus(studentId, clubId);
