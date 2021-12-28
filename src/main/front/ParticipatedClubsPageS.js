@@ -1,7 +1,9 @@
+let studentID = localStorage.getItem("studentId");
+
 const getData = () => {
 
 
-    axios.get('https://projectdeneme.herokuapp.com/students/getClubs/1').then(function (response) {
+    axios.get('https://projectdeneme.herokuapp.com/students/getClubs/' + studentID).then(function (response) {
 
         console.log(response);
 

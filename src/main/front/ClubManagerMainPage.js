@@ -1,10 +1,12 @@
 const tbody = document.getElementById("tbody");
 const tobbybest1 = document.getElementById("tobbybest");
-const clubID = localStorage.getItem("clubId");
+let clubID = localStorage.getItem("clubId");
 console.log("club id is " + clubID);
 
 function getData() {
     console.log("getData in clubmanager" + clubID);
+    console.log("session storage");
+    console.log(localStorage);
     axios.get('https://projectdeneme.herokuapp.com/clubs/listStudentsInClub/' + clubID).then(function (response) {
             console.log("hey" + response);
 
@@ -12,15 +14,19 @@ function getData() {
                 console.log(response.data[i]);
                 let name = response.data[i].name;
                 let surname = response.data[i].surname;
-                let id1 = response.data[i].id;
+                let id1 = response.data[i].userId;
 
                 // TODO: name, surname ve id'yi ayırın
-                const line31 = document.createElement('line31');
-                line31.innerHTML = '<tr  style="color: red"><td class="ms-4" style="color: red">' + name + '</td><td>' +
-                    '<tr  style="color: red"><td class="ms-4" style="color: red">' + surname + '</td><td>' +
-                    '<tr  style="color: red"><td class="ms-4" style="color: red">' + id1 + '</td><td>';
-                    // surname + '</td><td>' + id1 + '</td> </tr>';
+                let line31 = document.createElement('line31');
+
+                line31.innerHTML = '<tr>\n' +
+                        ' <td> ' + name + ' </td>\n ' +
+                        ' <td> ' + surname + ' </td>\n ' +
+                        ' <td> ' + id1 + ' </td>\n' +
+                    '</tr>\n';
+
                 tbody.appendChild(line31);
+
             }
         }
     )

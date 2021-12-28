@@ -1,5 +1,5 @@
 const tbody = document.getElementById("tbody");
-const id = sessionStorage.getItem("clubId");
+const id = localStorage.getItem("clubId");
 console.log(id);
 const getData = () => {
     axios.get('https://projectdeneme.herokuapp.com/clubs/listActivities/' + id).then(function (response) {
@@ -27,8 +27,7 @@ const getData = () => {
 
 };
 
-function goDetails(activityId) {
-    var aId = activityId;
-    sessionStorage.setItem("activityId", aId);
+function goDetails(activityID) {
+    localStorage.setItem("activityId", activityID);
     document.location.href = "ActivityParticipantList.html";
 }

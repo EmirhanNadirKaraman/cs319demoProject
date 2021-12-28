@@ -50,10 +50,8 @@ function putActivityData() {
             console.log(response);
             console.log(response.data);
             axios.put('https://projectdeneme.herokuapp.com/activities/addNewActivity', {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                activityName: response.data.activityName,
+                id: activityID,
+                activityName: activityNameText.value,
                 activityDescription: descriptionText.value,
                 guests: guestText.value,
                 place: placeText.value,

@@ -16,6 +16,7 @@ for (let i = 0; i < tabHeaderElementsStudent.length; i++) {
 let userEmail = document.getElementById("userMail");
 let password = document.getElementById("password");
 let login = document.getElementById("login");
+let signup = document.getElementById("signup active");
 let currentID;
 
 function getLoginResultStudent() {
@@ -26,8 +27,8 @@ function getLoginResultStudent() {
             if (response.data === true) {
                 console.log("response data is true");
                 getID(userEmail.value);
-                console.log("h" + localStorage["studentID"]);
-                document.location.href = "MainPageS.html";
+                console.log("h" + localStorage["studentId"]);
+
             } else {
                 alert("E-mail or password is wrong!")
             }
@@ -41,7 +42,7 @@ function getLoginResultStudent() {
 
 function getID(studentEmail) {
     console.log("in get id");
-    // GET http://localhost:8080/students/getStudentIdByEmail/{{studentEmail}}
+    // GET http://sessionhost:8080/students/getStudentIdByEmail/{{studentEmail}}
     console.log("student email is " + studentEmail);
     console.log(typeof(studentEmail));
 
@@ -50,8 +51,9 @@ function getID(studentEmail) {
         currentID = response.data;
         console.log(currentID);
         localStorage.setItem("studentId", currentID);
-        alert("local storage set student id to currentID = " + currentID);
+        alert("session storage set student id to currentID = " + currentID);
         alert(localStorage.getItem("studentId"));
+        document.location.href = "MainPageS.html";
         // document.location.href = "MainPageS.html";
     })
         .catch(function (error) {
