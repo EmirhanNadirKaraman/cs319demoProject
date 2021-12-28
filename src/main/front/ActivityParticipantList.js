@@ -1,5 +1,4 @@
 const tbody1 = document.getElementById("tbody");
-
 const activityID = localStorage.getItem("activityId");
 var acList = document.getElementById("acList");
 console.log(activityID);
@@ -31,7 +30,7 @@ function getData() {
                 let email = response.data[i].email;
                 let dep = response.data[i].department;
                 
-                var row = activityTable.insertRow(i+1);
+                var row = acList.insertRow(i+1);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);

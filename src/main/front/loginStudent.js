@@ -16,21 +16,54 @@ for (let i = 0; i < tabHeaderElementsStudent.length; i++) {
 let userEmail = document.getElementById("userMail");
 let password = document.getElementById("password");
 let login = document.getElementById("login");
-let signup = document.getElementById("signup active");
+let signup = document.getElementById("signup_button");
+
 let currentID;
+let firstPassword = document.getElementById("firstPassword");
+let secondPassword = document.getElementById("secondPassword");
+
+let name = document.getElementById("signup_name");
+let email = document.getElementById("signup_email");
+let surname = document.getElementById("signup_surname");
+
+function getSignupStudent() {
+    // if not equal
+    if(firstPassword.value !== secondPassword.value) {
+        alert("password is not same");
+    }
+
+    else {
+        axios.put("https://projectdeneme.herokuapp.com/students/addNewStudent",
+            {
+                name: name.value,
+                surname: surname.value,
+                email: email.value,
+                password: firstPassword.value
+            })
+            .then(function () {
+                console.log("im adding the student");
+                axios.get("https://projectdeneme.herokuapp.com/students/getStudentIdByEmail/" + email.value)
+                    .then(function (response) {
+                        getID(email.value);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+}
 
 function getLoginResultStudent() {
     console.log("get login result student");
     axios.get('https://projectdeneme.herokuapp.com/students/loginPasswordCheck/' + userEmail.value + '/' + password.value)
         .then(function (response) {
-            alert("axios get login password check");
             if (response.data === true) {
-                console.log("response data is true");
                 getID(userEmail.value);
-                console.log("h" + localStorage["studentId"]);
-
             } else {
-                alert("E-mail or password is wrong!")
+                alert("E-mail or password is wrong!");
             }
         })
         .catch(function (error) {
@@ -51,8 +84,8 @@ function getID(studentEmail) {
         currentID = response.data;
         console.log(currentID);
         localStorage.setItem("studentId", currentID);
-        alert("session storage set student id to currentID = " + currentID);
-        alert(localStorage.getItem("studentId"));
+        // alert("local storage set student id to currentID = " + currentID);
+        // alert(localStorage.getItem("studentId"));
         document.location.href = "MainPageS.html";
         // document.location.href = "MainPageS.html";
     })
@@ -64,4 +97,5 @@ function getID(studentEmail) {
 }
 
 login.addEventListener('click', getLoginResultStudent);
+signup.addEventListener('click', getSignupStudent);
 // document.location.href = "MainPageS.html";

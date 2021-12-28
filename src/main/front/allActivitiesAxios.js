@@ -62,6 +62,7 @@ function addActivityToStudent(studentID, activityID) {
     axios.put("https:projectdeneme.herokuapp.com/students/addActivityToStudent/" + studentID + "/" + activityID)
         .then(function () {
             console.log("i added yeah");
+            document.location.href = "MainPageS.html";
         })
         .catch(function (error) {
             console.log(error);
