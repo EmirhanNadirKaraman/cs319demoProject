@@ -7,7 +7,7 @@ console.log("club id is " + clubID);
 
 function getData() {
     console.log("getData in clubmanager" + clubID);
-    axios.get('https://projectdeneme.herokuapp.com/clubs/listStudentsInClub/' + clubID).then(function (response) {
+    axios.get('https://projectdeneme.herokuapp.com/clubs/listStudentsInClub/' +clubID).then(function (response) {
             console.log("hey" + response);
 
             for (let i = 0; i < response.data.length; i++) {
@@ -22,7 +22,7 @@ function getData() {
                 var cell3 = row.insertCell(2);
                 cell1.innerHTML = name;
                 cell2.innerHTML = surname;
-                cell3.innerHTML = id;
+                cell3.innerHTML = id1;
                 /**
                 // TODO: name, surname ve id'yi ayırın
                 const line31 = document.createElement('line31');
@@ -36,7 +36,7 @@ function getData() {
         }
     )
 
-    axios.get('https://projectdeneme.herokuapp.com/clubs/listActivities/' + clubID).then(function (response) {
+    axios.get('https://projectdeneme.herokuapp.com/clubs/listActivities/'+ clubID ).then(function (response) {
             console.log("list activities");
             console.log(response);
             console.log(response.data.length);
@@ -45,7 +45,8 @@ function getData() {
                 console.log(i + " " + activity);
                 console.log(activity);
                 let date = activity.date;
-                let desc = activity.activityName;
+
+                let actinm = activity.activityName;
 
                 let organizators = "";
 
@@ -65,7 +66,7 @@ function getData() {
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 cell1.innerHTML = date;
-                cell2.innerHTML = activityName;
+                cell2.innerHTML = actinm;
                 cell3.innerHTML = organizators;
 
                 /*for(let j = 0; j < activity.organizerClubList.length - 1; j++) {

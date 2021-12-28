@@ -3,7 +3,7 @@ const clubID = localStorage.getItem("clubId");
 console.log(clubID);
 
 function getData() {
-    axios.get('https://projectdeneme.herokuapp.com/clubs/listActivities/' + clubID).then(function (response) {
+    axios.get('https://projectdeneme.herokuapp.com/clubs/listActivities/'+ clubID ).then(function (response) {
         console.log(response);
         for (let i = 0; i < response.data.length; i++) {
             let actName = response.data[i].activityName;

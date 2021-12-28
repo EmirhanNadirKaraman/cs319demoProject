@@ -4,11 +4,12 @@ const studentID = localStorage.getItem("studentId");
 console.log(studentID);
 
 const getData = () => {
+
     console.log("getData");
     console.log(studentID);
     console.log(typeof (studentID));
     console.log(localStorage);
-    axios.get('https://projectdeneme.herokuapp.com/students/listAllActivities/' + studentID).then(function (response) {
+    axios.get('https://projectdeneme.herokuapp.com/students/listAllActivities/1' ).then(function (response) {
         let today = new Date();
         console.log(response);
 

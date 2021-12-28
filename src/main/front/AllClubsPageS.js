@@ -11,7 +11,7 @@ const getData = () => {
             document.body.innerHTML += ' <ul class="list-group list-group-horizontal mt-3 justify-content-evenly" style="background-color: #cbcaca" >\n' +
                 '        <li class="list-group-item col-lg-6 col-sm-4 col-md-4 text-center ms-2" style="border: none;background-color: #cbcaca">' + clubname + '</li>\n' +
                 '        <li class="list-group-item  col-lg-2 ms-2 " style="border: none;background-color: #cbcaca">\n' +
-                '            <button type="button" class="btn btn-danger btn-outline-dark " style="color: black">Show</button>\n' +
+                '            <button type="button" onclick="popup()" class="btn btn-danger btn-outline-dark " style="color: black">Show</button>\n' +
                 '        </li>\n' +
                 '        <li class="list-group-item col-lg-2 ms-2" style="border: none;background-color: #cbcaca">\n' +
                 '            <button type="button" class="btn btn-danger btn-outline-dark " style="color: black">Join</button>\n' +
@@ -23,5 +23,9 @@ const getData = () => {
     })
 };
 
+function popup()
+{
 
+
+}
 
