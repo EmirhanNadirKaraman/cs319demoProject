@@ -50,26 +50,21 @@ function putActivityData() {
             console.log(response);
             console.log(response.data);
             axios.put('https://projectdeneme.herokuapp.com/activities/addNewActivity', {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 activityName: response.data.activityName,
-                /*
-                date: date,
-                capacity: quotaText.value,
-                ge250Point: ge250Text.value,
-                place: placeText.value,
-                participantList: null,
-                activityDescription: null
-                */
-
                 activityDescription: descriptionText.value,
                 guests: guestText.value,
                 place: placeText.value,
                 capacity: quotaText.value,
-                date: datepicker,
+                date: date,
                 ge250Point: ge250Text.value
             })
-                .then(function () {
+                .then(function (response) {
+                    console.log(response);
                     console.log("i added");
-                    // document.location.href = "ClubManagerMainPage.html";
+                    document.location.href = "ClubManagerMainPage.html";
                 })
                 .catch(function (error) {
                     console.log(error);

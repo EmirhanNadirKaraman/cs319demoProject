@@ -27,7 +27,7 @@ function getLoginResultStudent() {
                 console.log("response data is true");
                 getID(userEmail.value);
                 console.log("h" + localStorage["studentID"]);
-                // document.location.href = "MainPageS.html";
+                document.location.href = "MainPageS.html";
             } else {
                 alert("E-mail or password is wrong!")
             }
@@ -52,6 +52,7 @@ function getID(studentEmail) {
         localStorage.setItem("studentId", currentID);
         alert("local storage set student id to currentID = " + currentID);
         alert(localStorage.getItem("studentId"));
+        // document.location.href = "MainPageS.html";
     })
         .catch(function (error) {
             // handle error
@@ -61,4 +62,4 @@ function getID(studentEmail) {
 }
 
 login.addEventListener('click', getLoginResultStudent);
-document.location.href = "MainPageS.html";
+// document.location.href = "MainPageS.html";
