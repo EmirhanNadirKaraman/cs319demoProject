@@ -38,7 +38,11 @@ const getData = () => {
                 '      <li class="list-group-item  col-lg-1 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityQuota1"> ' + activityCapacity + '</span></li>\n' +
                 '      <li class="list-group-item  col-lg-1 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityGe1"> ' + activityGePoints + ' </span></li>\n' +
                 '      <li class="list-group-item col-lg-1 col-2 justify-content-center d-none  d-sm-block" style="border: none">\n' +
+<<<<<<< HEAD
                 '        <button id="joinButton" type="button" onclick="addActivityToStudent('+ studentID + ',' +activityID+')"class="btn btn-danger btn-outline-dark justify-content-center" style="color: white">Join</button>\n' +
+=======
+                '        <button id="joinButton" type="button" onclick=`addActivityToStudent(${studentID}, ${activityID})` class="btn btn-danger btn-outline-dark justify-content-center" style="color: white">Join</button>\n' +
+>>>>>>> ef7337e6cb54ac2578196aa78cb027a018de4dda
                 '      </li>';
 
         }
