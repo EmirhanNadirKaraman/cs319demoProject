@@ -7,7 +7,6 @@ const clubID = localStorage.getItem("clubId");
 function getData2() {
     axios.get('https://projectdeneme.herokuapp.com/activities/listActivities').then(function (response) {
         console.log(response);
-        console.log("hey" + response.data[12].organizerClubList);
         for (let i = 0; i < response.data.length; i++) {
             let activityName = response.data[i].activityName;
             let activitydate = response.data[i].date;

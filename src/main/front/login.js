@@ -18,45 +18,50 @@ let password = document.getElementById("password");
 let login = document.getElementById("login");
 
 function getLoginResult() {
-    axios.get('https://projectdeneme.herokuapp.com/clubManagers/loginPasswordCheck/' + managerEmail.value + '/' + password.value).then(function (response) {
-        console.log(response);
-        console.log(response.data);
-        if (response.data === true) {
-            getID(managerEmail.value);
-            document.location.href = "ClubManagerMainPage.html";
-        } else {
-            alert("E-mail or password is wrong!")
-        }
-    })
+
+    axios.get('https://projectdeneme.herokuapp.com/clubManagers/loginPasswordCheck/' + managerEmail.value + '/' + password.value)
+        .then(function (response) {
+            console.log(response);
+            console.log(response.data);
+            if (response.data) {
+
+                getID(managerEmail.value);
+
+            } else {
+                alert("E-mail or password is wrong!")
+            }
+        })
         .catch(function (error) {
             // handle error
+
             console.log(error);
         });
 }
 
 
 function getID(managerEmail) {
-
     axios.get('https://projectdeneme.herokuapp.com/clubManagers/getClubManagerIdByEmail/' + managerEmail)
 
         .then(function (response) {
             console.log(response.data);
             let currentID = response.data;
 
-            axios.get('https://projectdeneme.herokuapp.com/clubManagers/getClub/' + currentID)
+            axios.get('https://projectdeneme.herokuapp.com/clubManagers/getClub/'+currentID)
                 .then(function (response) {
+                    console.log(currentID);
                     console.log(response);
                     let clubID = response.data.id;
                     console.log(typeof (clubID));
                     console.log(clubID);
                     localStorage.setItem("clubId", clubID);
-                })
-                .catch(function (error) {
+                    document.location.href = "ClubManagerMainPage.html";
+                }).catch((error) => {
                     console.log(error);
                 });
         })
         .catch(function (error) {
             // handle error
+
             console.log(error);
         });
 }

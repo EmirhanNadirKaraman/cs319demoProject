@@ -6,7 +6,7 @@ const quotaText = document.getElementById('quotaText');
 const placeText = document.getElementById('placeText');
 const ge250Text = document.getElementById('ge250Text');
 const saveButton = document.getElementById('saveButton');
-const clubID = localStorage.getItem("clubID");
+const clubID = localStorage.getItem("clubId");
 
 function putActivityData() {
     let date = new Date($('#date').val());

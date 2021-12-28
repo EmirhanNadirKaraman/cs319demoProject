@@ -44,20 +44,26 @@ public class ActivityService {
     @Transactional
     public void addNewActivity(Activity activity) {
         System.out.println("add activity in service");
-        Activity activityByActivityName = activityRepository.findActivityByActivityName(activity.getActivityName());
+        Activity activityById = activityRepository.findById(activity.getId()).orElse(null);;
 
-        if(activityByActivityName == null) {
+
+        // customize
+        if(activity.getId() != null) {
+            if(activityById == null)
+                throw new IllegalStateException("activity does not exist");
+            else {
+                activityById.setActivityName(activity.getActivityName());
+                activityById.setDate(activity.getDate());
+                activityById.setCapacity(activity.getCapacity());
+                activityById.setGe250Point(activity.getGe250Point());
+                activityById.setActivityDescription(activity.getActivityDescription());
+                activityById.setParticipantList(activity.getParticipantList());
+                activityById.setPlace(activity.getPlace());
+            }
+        }
+
+        else
             activityRepository.save(activity);
-        }
-
-        else {
-            activityByActivityName.setDate(activity.getDate());
-            activityByActivityName.setCapacity(activity.getCapacity());
-            activityByActivityName.setGe250Point(activity.getGe250Point());
-            activityByActivityName.setActivityDescription(activity.getActivityDescription());
-            activityByActivityName.setParticipantList(activity.getParticipantList());
-            activityByActivityName.setPlace(activity.getPlace());
-        }
     }
 
     public void deleteActivity(Long id) {
