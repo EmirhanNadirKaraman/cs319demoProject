@@ -1,19 +1,20 @@
 const tbody = document.getElementById("tbody");
 
-const id = localStorage.getItem("clubId");
+const clubID = localStorage.getItem("clubId");
 const clubMemberTable = document.getElementById("clubMembersTable");
-console.log(id);
+console.log(clubID);
 
 
 const getData = () => {
 
 
-    axios.get('https://projectdeneme.herokuapp.com/clubs/listStudentsInClub/'+ id ).then(function (response) {
+    axios.get('https://projectdeneme.herokuapp.com/clubs/listStudentsInClub/'+ clubID).then(function (response) {
 
             console.log(response);
 
 
             for (var i = 0; i < response.data.length; i++) {
+                var id = response.data[i].id;
                 var name1 = response.data[i].name;
                 var surname1 = response.data[i].surname;
 
@@ -30,7 +31,7 @@ const getData = () => {
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
                 var cell6 = row.insertCell(5);
-                var button = '<button onclick="remove(' + sid + ')" class="remove">Remove from Club</button>';
+                var button = '<button onclick="remove(' + id + ')" class="remove">Remove from Club</button>';
 
                 cell1.innerHTML = name1;
                 cell2.innerHTML = surname1;
@@ -45,17 +46,17 @@ const getData = () => {
     )
 };
 
-    function remove(studentID) {
-        axios.put('https://projectdeneme.herokuapp.com/students/removeClubFromStudent/' + studentID + '/' + id)
-            .then(function (response) {
-                console.log(response);
+function remove(studentID) {
+    axios.delete('https://projectdeneme.herokuapp.com/students/removeClubFromStudent/' + studentID + '/' + clubID)
+        .then(function (response) {
+            console.log(response);
+            document.location.href = "ClubMembersPage.html";
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        document.location.href = "ClubMembersPage.html"
-    }
+}
 
 
 
