@@ -1,5 +1,6 @@
 const tbody1 = document.getElementById("tbody");
 const activityID = localStorage.getItem("activityId");
+const studentID = localStorage.getItem("studentId");
 var acList = document.getElementById("acList");
 console.log(activityID);
 
@@ -34,13 +35,15 @@ function getData() {
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
-                var cell4 = row.insertCell(4);
-                var cell5 = row.insertCell(5);
+                var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
+                var cell6 = row.insertCell(5);
                 cell1.innerHTML = name;
                 cell2.innerHTML = surname;
                 cell3.innerHTML = sid;
                 cell4.innerHTML = email;
                 cell5.innerHTML = dep;
+                cell6.innerHTML = '<button id="removeButtonA" class="remove">Remove from Activity</button>';
                 /**
                 const line = document.createElement('line31');
                 line.innerHTML += '<tr><th scope="col "style="color:white;">' + name + '</th><th scope="col"> ' + surname + '</th> <th scope="col">' + sid + '</th> <th scope="col">' + email + '</th> <th scope="col">' + dep + '</th> <td style="text-align: center;"><button class="remove" onclick="remove(' + response.data[i].id + ' )">Remove from Activity</button></td> </tr>';
