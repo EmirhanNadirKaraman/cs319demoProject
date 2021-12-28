@@ -1,5 +1,7 @@
 const tbody = document.getElementById("tbody");
+
 const id = localStorage.getItem("clubId");
+const clubMemberTable = document.getElementById("clubMembersTable");
 console.log(id);
 
 
@@ -17,21 +19,26 @@ const getData = () => {
                 var sid = response.data[i].userId;
                 var email = response.data[i].email;
                 var dep = response.data[i].department;
-                const line31 = document.createElement('line31');
-                line31.innerHTML = '<tr><th scope="col">' + name + '\t </th><th scope="col"> ' + surname + '\t </th><th scope="col">' + sid + '\t </th><th scope="col">' + email + '\t </th><th scope="col">' + dep + '\t </th><td style="text-align: center;"><button class="remove">Remove from Club</button></td></tr>' + "\n";
+
+                var row = clubMemberTable.insertRow(i+1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                var cell4 = row.insertCell(4);
+
+                cell1.innerHTML = name;
+                cell2.innerHTML = surname;
+                cell3.innerHTML = userId;
+                cell4.innerHTML = email;
+                cell5.innerHTML = department;
+
+                /**
+                  const line31 = document.createElement('line31');
+                line31.innerHTML = '<tr><th scope="col">' + name + '</th><th scope="col"> ' + surname + '</th><th scope="col">' + sid + '</th><th scope="col">' + email + '</th><th scope="col">' + dep + '</th><td style="text-align: center;"><button class="remove">Remove from Club</button></td></tr>';
                 tbody.appendChild(line31);
-            }
-
-        /*
-        document.body.innerHTML = document.body.innerHTML + '<ul class="list-group list-group-horizontal mb-2 mt-4 "  >\n' +
-            '      <li class="list-group-item col-lg-2 col-sm-2 col-md-2 text-center  col-4" id="activityClub1" style="border: none"> </li>\n' +
-            '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityName1"> ' + activityName + ' </span></li>\n' +
-            '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityDate1"> ' + activitydate + ' </span></li>\n' +
-            '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityPlace1"> ' + activityplace + ' </span></li>\n' +
-            '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityQuota1"> ' + accap + '</span></li>\n' +
-            '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityGe1"> ' + ge250 + ' </span></li>';
-
-         */
+                }
+                 */
         }
     )
 };
