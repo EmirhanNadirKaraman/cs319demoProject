@@ -1,7 +1,8 @@
 const tbody1 = document.getElementById("tbody");
 const activityID = localStorage.getItem("activityId");
 const studentID = localStorage.getItem("studentId");
-var acList = document.getElementById("acList");
+let acList = document.getElementById("acList");
+
 console.log(activityID);
 
 
@@ -18,8 +19,6 @@ function remove(studentID) {
 }
 
 function getData() {
-
-
     axios.get('https://projectdeneme.herokuapp.com/activities/getParticipantList/' + activityID)
         .then(function (response) {
 
@@ -30,8 +29,8 @@ function getData() {
                 let sid = response.data[i].userId;
                 let email = response.data[i].email;
                 let dep = response.data[i].department;
-                
-                var row = acList.insertRow(i+1);
+
+                var row = acList.insertRow(i + 1);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
@@ -44,17 +43,28 @@ function getData() {
                 cell4.innerHTML = email;
                 cell5.innerHTML = dep;
                 cell6.innerHTML = '<button id="removeButtonA" class="remove">Remove from Activity</button>';
+
+                let removeButton = document.getElementById("removeButtonA");
+                removeButton.addEventListener('click', removeStudentFromActivity);
                 /**
-                const line = document.createElement('line31');
-                line.innerHTML += '<tr><th scope="col "style="color:white;">' + name + '</th><th scope="col"> ' + surname + '</th> <th scope="col">' + sid + '</th> <th scope="col">' + email + '</th> <th scope="col">' + dep + '</th> <td style="text-align: center;"><button class="remove" onclick="remove(' + response.data[i].id + ' )">Remove from Activity</button></td> </tr>';
-                tbody1.appendChild(line);
-                */
+                 const line = document.createElement('line31');
+                 line.innerHTML += '<tr><th scope="col "style="color:white;">' + name + '</th><th scope="col"> ' + surname + '</th> <th scope="col">' + sid + '</th> <th scope="col">' + email + '</th> <th scope="col">' + dep + '</th> <td style="text-align: center;"><button class="remove" onclick="remove(' + response.data[i].id + ' )">Remove from Activity</button></td> </tr>';
+                 tbody1.appendChild(line);
+                 */
             }
         })
         .catch(function (error) {
             console.log(error);
         })
-
 }
 
+function removeStudentFromActivity() {
+    axios.put("https://projectdeneme.herokuapp.com/students/deleteActivityFromStudent/" + studentID + "/" + activityID, {})
+        .then(function (response) {
+            alert("i deleted student from activity");
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+}
 
