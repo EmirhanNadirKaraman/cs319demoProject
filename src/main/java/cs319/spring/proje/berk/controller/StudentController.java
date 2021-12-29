@@ -144,4 +144,9 @@ public class StudentController {
     public List<Club> getUnattendedClubs(@PathVariable("studentId") Long studentId) {
         return studentService.getUnattendedClubs(studentId);
     }
+
+    @GetMapping(path = "getUnattendedActivities/{studentId}")
+    public List<Activity> getUnattendedActivities(@PathVariable("studentId") Long studentId) {
+        return studentService.getUnattendedActivities(studentId);
+    }
 }
