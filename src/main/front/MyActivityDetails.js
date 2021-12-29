@@ -12,7 +12,6 @@ function getData() {
             let date1 = response.data[i].date;
             let activityId = response.data[i].id;
 
-
             let clubname = response.data[i].clubName;
             const line31 = document.createElement('line31');
             line31.innerHTML += ' <tr style="height: 20%;"> <td style="width: 75%;"> <div class="card"> <div class="container1"> <h1 class="activity-name"><span id="activityname"> Activity Name: ' + actName + '</span></h1> <p><span id="descr">description' + activityDesc + ' </span></p> <h1 class="neon"><span id="quota">Quota:' + actQuota + '</span> </h1> <h1 class="neon"><span id="date">Date:' + date1 + '</span> </h1> </div><div class="container"><div class="row" style="text-align: center;"><button class="hidden-btn" onclick="goCustom(' + activityId + ')"> Customize Event</button></div><div class="row" style="text-align: center;"><button class="hidden-btn2" onclick="deleteEvent(' + activityId + ')"> Delete Event</button></div><div class="row" style="text-align: center;"><button class="hidden-btn" onclick="goDetails(' + activityId + ')"> Show Participant</button></div></div></div></td></tr>';
