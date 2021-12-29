@@ -66,6 +66,7 @@ public class ActivityService {
             activityRepository.save(activity);
     }
 
+    @Transactional
     public void deleteActivity(Long id) {
         Activity activityById = activityRepository.findById(id).orElseThrow(() -> new IllegalStateException("activity with id " +
                 id + " does not exist"));
