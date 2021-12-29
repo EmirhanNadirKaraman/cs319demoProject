@@ -35,7 +35,7 @@ const getData = () => {
 
                 // TODO: club name eklenecek
                 document.body.innerHTML = document.body.innerHTML + '<ul class="list-group list-group-horizontal mb-2 mt-4 "  >\n' +
-                    '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" id="activityClub1" style="border: none"><span id="activityName1"> ' + activityclubName + ' </span> </li>\n' +
+                    '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" id="activityClub1" style="border: none"><span id="activityName1"> ' + activityClubName + ' </span> </li>\n' +
                     '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityName1"> ' + activityName + ' </span></li>\n' +
                     '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityDate1"> ' + activityDate + ' </span></li>\n' +
                     '      <li class="list-group-item  col-lg-2 col-sm-2 col-md-2 col-4 text-center" style="border: none"><span id="activityPlace1"> ' + activityPlace + ' </span></li>\n' +
