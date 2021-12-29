@@ -119,14 +119,6 @@ public class StudentController {
         studentService.deleteActivityFromStudent(activity, studentId);
     }
 
-    /*
-    @GetMapping(path = "loginPasswordCheck/{email}/{password}")
-    public int loginPasswordCheck(@PathVariable("email") String email,
-                                  @PathVariable("password") String password) {
-        return studentService.loginPasswordCheck(email, password);
-    }
-    */
-
     @GetMapping(path = "loginPasswordCheck/{email}/{password}")
     public boolean loginPasswordCheck(@PathVariable("email") String email,
                                       @PathVariable("password") String password) {

@@ -16,7 +16,6 @@ public class ProjeApplication {
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
-		System.out.println("naber berk");
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
